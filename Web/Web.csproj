@@ -77,9 +77,15 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SystemGroup.Retail.Structure.Web, Version=888.888.17.33123, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\SystemGroup.Retail.Structure.Web.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="SystemGroup.Web, Version=777.777.16.55627, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\SystemGroup.Web.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.Web.UI, Version=777.777.0.614, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -97,6 +103,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebComponentInitializer .cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,8 @@ namespace SystemGroup.Retail.StudentManagement.Common
 {
     [Serializable]
     [Master(typeof(IStudentBusiness))]
+    [DataNature(DataNature.MasterData)]
+    [SearchFields("Code", "LastName")]
     partial class Student : Entity
     {
         #region Methods
@@ -26,7 +28,7 @@ namespace SystemGroup.Retail.StudentManagement.Common
         public override void GetColumns(List<ColumnInfo> columns)
         {
             base.GetColumns(columns);
-            columns.Add(new TextColumnInfo(nameof(Code), "Student_Code"));
+            columns.Add(new TextColumnInfo(nameof(Code), "SystemGroup.Retail.StudentManagement:Student_Code"));
             columns.Add(new TextColumnInfo(nameof(FirstName), "Student_FirstName"));
             columns.Add(new TextColumnInfo(nameof(LastName), "Student_LastName"));
             columns.Add(new DateTimeColumnInfo(nameof(BirthDate), "Student_BirthDate"));

@@ -12,7 +12,8 @@ namespace SystemGroup.Retail.StudentManagement.Common
     [ServiceInterface]
     public interface IStudentBusiness : IBusinessBase<Student>
     {
-        [EntityView("AllStudent", "Views_AllStudent", typeof(StudentProjection), "Name", IsDefaultView = true)]
+        [EntityView("AllStudent", "همه دانشجوها", typeof(StudentProjection), "Code", IsDefaultView = true)]
+        [EntityView("AllStudentNames", "نام همه دانشجوها", typeof(StudentNameProjection), "Name", IsDefaultView = true)]
         new IQueryable<Student> FetchAll();
     }
 }

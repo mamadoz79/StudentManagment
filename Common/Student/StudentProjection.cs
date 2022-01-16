@@ -13,13 +13,7 @@ namespace SystemGroup.Retail.StudentManagement.Common
 
         public override IQueryable Project(IQueryable<Student> students)
         {
-            //return from student in students
-            //       select new
-            //       {
-            //           FName = student.FirstName,
-            //           LName = student.LastName,
-            //           student.Code,
-            //       }; 
+            
             return students;
         }
         public override void GetColumns(List<ColumnInfo> columns)

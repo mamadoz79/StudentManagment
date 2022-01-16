@@ -35,6 +35,12 @@ namespace SystemGroup.Retail.StudentManagement.Common
             columns.Add(new LookupColumnInfo(nameof(Gender), "Student_Gender", nameof(StudentGender)));
         }
 
+        public override void SetDefaultValues()
+        {
+            base.SetDefaultValues();
+            Gender = StudentGender.Female;
+            BirthDate = DateTime.Now;
+        }
         #endregion
     }
 }

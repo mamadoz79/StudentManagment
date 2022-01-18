@@ -39,9 +39,9 @@ namespace SystemGroup.Retail.StudentManagement.Web
         {
             return new List<ComponentLink>
             {
-                new ComponentLink("UnversityManagement", new ComponentLink[] {
-                    new ComponentLink("StudentManagement", new ComponentLink[] {
-                        new ComponentLink( "Lists", new ComponentLink[]
+                new ComponentLink("UniversityManagement", "Labels_UniversityManagement", null, null, 5, new ComponentLink[] {
+                    new ComponentLink("StudentManagement", "Labels_StudentManagement", null, null, 1, new ComponentLink[] {
+                        new ComponentLink( "Lists", "Labels_Lists", null, null, 1, new ComponentLink[]
                         {
                             WebComponentInitializerHelper.ListLink<Student>(null, null, 1),
                         }),

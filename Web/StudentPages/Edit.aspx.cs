@@ -57,6 +57,7 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
             e.Context.BindProperty(i => i.FirstName).To(txtFisrtName);
             e.Context.BindProperty(i => i.LastName).To(txtLastName);
             e.Context.BindValueTypeProperty(i => i.BirthDate).To(dtpBirthDate);
+            e.Context.BindValueTypeProperty(i => i.Gender).To(lkpGender);
         }
         
 

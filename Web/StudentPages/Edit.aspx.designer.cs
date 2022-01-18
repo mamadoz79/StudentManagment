@@ -85,5 +85,14 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SystemGroup.Web.UI.Controls.SgDatePicker dtpBirthDate;
+
+        /// <summary>
+        /// lkpGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SystemGroup.Web.UI.Controls.SgLookup lkpGender;
     }
 }

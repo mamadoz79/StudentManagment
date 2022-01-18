@@ -64,6 +64,17 @@
 								</sg:SgTableCell>
 							</sg:SgTableRow>
 
+							<sg:SgTableRow runat="server">
+								<sg:SgTableCell runat="server">
+									<sg:SgFieldLabel runat="server" TextKey="Student_Gender" Required="true" />
+								</sg:SgTableCell>
+								<sg:SgTableCell runat="server">
+									<sg:SgLookup runat="server" ID="lkpGender" LookupType="StudentGender" />
+								</sg:SgTableCell>
+								<sg:SgTableCell runat="server">
+									<sg:SgRequiredFieldValidator runat="server" ControlToValidate="lkpGender" ErrorMessage="عنوان را وارد کنید." />
+								</sg:SgTableCell>
+							</sg:SgTableRow>
 
 						</sg:SgFieldLayout>
 					</sg:SgFieldSet>

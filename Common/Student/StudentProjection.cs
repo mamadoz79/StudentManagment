@@ -25,6 +25,7 @@ namespace SystemGroup.Retail.StudentManagement.Common
             columns.Add(new EntityColumnInfo<Student>(nameof(Student.LastName)));
             columns.Add(new EntityColumnInfo<Student>(nameof(Student.Code)));
             columns.Add(new EntityColumnInfo<Student>(nameof(Student.BirthDate)));
+            columns.Add(new EntityColumnInfo<Student>(nameof(Student.Gender)));
 
         }
 

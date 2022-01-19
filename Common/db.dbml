@@ -2,13 +2,35 @@
   <Connection Mode="AppSettings" ConnectionString="Data Source=MISVDIDB4;Initial Catalog=VID-096-DVP-M;Persist Security Info=True;User ID=sa" SettingsObjectName="SystemGroup.Retail.StudentManagement.Common.Properties.Settings" SettingsPropertyName="VID_096_DVP_MConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Student" Member="Students">
     <Type Name="Student">
-      <Column Name="StudentID" Member="ID" Modifier="Override" Type="long" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StudentID" Member="ID" Modifier="Override" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Code" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="FirstName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Gender" Type="StudentGender" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Version" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Course" Member="Courses">
+    <Type Name="Course">
+      <Column Name="CourseID" Member="ID" Modifier="Override" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="TeacherRef" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Creator" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifier" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Version" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="Course_CourseStudent" Member="CourseStudents" ThisKey="ID" OtherKey="CourseRef" Type="CourseStudent" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CourseStudent" Member="CourseStudents">
+    <Type Name="CourseStudent">
+      <Column Name="CourseStudentID" Member="ID" Modifier="Override" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CourseRef" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="StudentRef" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Veraion" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="Course_CourseStudent" Member="Course" ThisKey="CourseRef" OtherKey="ID" Type="Course" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

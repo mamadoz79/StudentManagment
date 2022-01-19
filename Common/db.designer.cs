@@ -33,6 +33,12 @@ namespace SystemGroup.Retail.StudentManagement.Common
     partial void InsertStudent(Student instance);
     partial void UpdateStudent(Student instance);
     partial void DeleteStudent(Student instance);
+    partial void InsertCourse(Course instance);
+    partial void UpdateCourse(Course instance);
+    partial void DeleteCourse(Course instance);
+    partial void InsertCourseStudent(CourseStudent instance);
+    partial void UpdateCourseStudent(CourseStudent instance);
+    partial void DeleteCourseStudent(CourseStudent instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -70,6 +76,22 @@ namespace SystemGroup.Retail.StudentManagement.Common
 			get
 			{
 				return this.GetTable<Student>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Course> Courses
+		{
+			get
+			{
+				return this.GetTable<Course>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CourseStudent> CourseStudents
+		{
+			get
+			{
+				return this.GetTable<CourseStudent>();
 			}
 		}
 	}
@@ -255,6 +277,439 @@ namespace SystemGroup.Retail.StudentManagement.Common
 					this._Version = value;
 					this.SendPropertyChanged("Version");
 					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Course")]
+	public partial class Course : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _Name;
+		
+		private long _TeacherRef;
+		
+		private long _Creator;
+		
+		private System.DateTime _CreationDate;
+		
+		private long _LastModifier;
+		
+		private System.DateTime _LastModificationDate;
+		
+		private System.Data.Linq.Binary _Version;
+		
+		private EntitySet<CourseStudent> _CourseStudents;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnTeacherRefChanging(long value);
+    partial void OnTeacherRefChanged();
+    partial void OnCreatorChanging(long value);
+    partial void OnCreatorChanged();
+    partial void OnCreationDateChanging(System.DateTime value);
+    partial void OnCreationDateChanged();
+    partial void OnLastModifierChanging(long value);
+    partial void OnLastModifierChanged();
+    partial void OnLastModificationDateChanging(System.DateTime value);
+    partial void OnLastModificationDateChanged();
+    partial void OnVersionChanging(System.Data.Linq.Binary value);
+    partial void OnVersionChanged();
+    #endregion
+		
+		public Course()
+		{
+			this._CourseStudents = new EntitySet<CourseStudent>(new Action<CourseStudent>(this.attach_CourseStudents), new Action<CourseStudent>(this.detach_CourseStudents));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="CourseID", Storage="_ID", DbType="BigInt NOT NULL", IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public override long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(256) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherRef", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long TeacherRef
+		{
+			get
+			{
+				return this._TeacherRef;
+			}
+			set
+			{
+				if ((this._TeacherRef != value))
+				{
+					this.OnTeacherRefChanging(value);
+					this.SendPropertyChanging();
+					this._TeacherRef = value;
+					this.SendPropertyChanged("TeacherRef");
+					this.OnTeacherRefChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creator", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long Creator
+		{
+			get
+			{
+				return this._Creator;
+			}
+			set
+			{
+				if ((this._Creator != value))
+				{
+					this.OnCreatorChanging(value);
+					this.SendPropertyChanging();
+					this._Creator = value;
+					this.SendPropertyChanged("Creator");
+					this.OnCreatorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime CreationDate
+		{
+			get
+			{
+				return this._CreationDate;
+			}
+			set
+			{
+				if ((this._CreationDate != value))
+				{
+					this.OnCreationDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreationDate = value;
+					this.SendPropertyChanged("CreationDate");
+					this.OnCreationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifier", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long LastModifier
+		{
+			get
+			{
+				return this._LastModifier;
+			}
+			set
+			{
+				if ((this._LastModifier != value))
+				{
+					this.OnLastModifierChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifier = value;
+					this.SendPropertyChanged("LastModifier");
+					this.OnLastModifierChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModificationDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime LastModificationDate
+		{
+			get
+			{
+				return this._LastModificationDate;
+			}
+			set
+			{
+				if ((this._LastModificationDate != value))
+				{
+					this.OnLastModificationDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastModificationDate = value;
+					this.SendPropertyChanged("LastModificationDate");
+					this.OnLastModificationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_CourseStudent", Storage="_CourseStudents", ThisKey="ID", OtherKey="CourseRef")]
+		public EntitySet<CourseStudent> CourseStudents
+		{
+			get
+			{
+				return this._CourseStudents;
+			}
+			set
+			{
+				this._CourseStudents.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CourseStudents(CourseStudent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = this;
+		}
+		
+		private void detach_CourseStudents(CourseStudent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CourseStudent")]
+	public partial class CourseStudent : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private long _CourseRef;
+		
+		private long _StudentRef;
+		
+		private System.Data.Linq.Binary _Veraion;
+		
+		private EntityRef<Course> _Course;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnCourseRefChanging(long value);
+    partial void OnCourseRefChanged();
+    partial void OnStudentRefChanging(long value);
+    partial void OnStudentRefChanged();
+    partial void OnVeraionChanging(System.Data.Linq.Binary value);
+    partial void OnVeraionChanged();
+    #endregion
+		
+		public CourseStudent()
+		{
+			this._Course = default(EntityRef<Course>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="CourseStudentID", Storage="_ID", DbType="BigInt NOT NULL", IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public override long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CourseRef", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long CourseRef
+		{
+			get
+			{
+				return this._CourseRef;
+			}
+			set
+			{
+				if ((this._CourseRef != value))
+				{
+					if (this._Course.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCourseRefChanging(value);
+					this.SendPropertyChanging();
+					this._CourseRef = value;
+					this.SendPropertyChanged("CourseRef");
+					this.OnCourseRefChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentRef", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long StudentRef
+		{
+			get
+			{
+				return this._StudentRef;
+			}
+			set
+			{
+				if ((this._StudentRef != value))
+				{
+					this.OnStudentRefChanging(value);
+					this.SendPropertyChanging();
+					this._StudentRef = value;
+					this.SendPropertyChanged("StudentRef");
+					this.OnStudentRefChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Veraion", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Veraion
+		{
+			get
+			{
+				return this._Veraion;
+			}
+			set
+			{
+				if ((this._Veraion != value))
+				{
+					this.OnVeraionChanging(value);
+					this.SendPropertyChanging();
+					this._Veraion = value;
+					this.SendPropertyChanged("Veraion");
+					this.OnVeraionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_CourseStudent", Storage="_Course", ThisKey="CourseRef", OtherKey="ID", IsForeignKey=true)]
+		public Course Course
+		{
+			get
+			{
+				return this._Course.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course.Entity;
+				if (((previousValue != value) 
+							|| (this._Course.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course.Entity = null;
+						previousValue.CourseStudents.Remove(this);
+					}
+					this._Course.Entity = value;
+					if ((value != null))
+					{
+						value.CourseStudents.Add(this);
+						this._CourseRef = value.ID;
+					}
+					else
+					{
+						this._CourseRef = default(long);
+					}
+					this.SendPropertyChanged("Course");
 				}
 			}
 		}

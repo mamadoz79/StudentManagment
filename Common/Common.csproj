@@ -55,8 +55,22 @@
       <HintPath>..\..\..\bin\SystemGroup.Framework.Concepts.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SystemGroup.General.IPartyManagement.Common, Version=777.777.17.30296, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Web\Bin\SystemGroup.General.IPartyManagement.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SystemGroup.General.PartyManagement.Common, Version=777.777.17.30296, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Web\Bin\SystemGroup.General.PartyManagement.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Course\Course.cs" />
+    <Compile Include="Course\CourseProjection.cs" />
+    <Compile Include="Course\CourseStudent.cs" />
+    <Compile Include="Course\ICourseBusiness.cs" />
     <Compile Include="db.designer.cs">
       <DependentUpon>db.dbml</DependentUpon>
       <DesignTime>True</DesignTime>

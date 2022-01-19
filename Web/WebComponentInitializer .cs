@@ -40,6 +40,9 @@ namespace SystemGroup.Retail.StudentManagement.Web
             return new List<ComponentLink>
             {
                 new ComponentLink("UniversityManagement", "Labels_UniversityManagement", null, null, 5, new ComponentLink[] {
+
+                    new WebComponentInitializerHelper.ListLink<Course>(null, null, 1),
+
                     new ComponentLink("StudentManagement", "Labels_StudentManagement", null, null, 1, new ComponentLink[] {
                         new ComponentLink( "Lists", "Labels_Lists", null, null, 1, new ComponentLink[]
                         {
@@ -48,7 +51,7 @@ namespace SystemGroup.Retail.StudentManagement.Web
                         WebComponentInitializerHelper.PageLink<StudentPages.Edit>(null, null, 1)
 
                     })
-                })
+                });
             };
         }
     }

@@ -586,8 +586,8 @@ namespace SystemGroup.Retail.StudentManagement.Common
     partial void OnCourseRefChanged();
     partial void OnStudentRefChanging(long value);
     partial void OnStudentRefChanged();
-    partial void OnVeraionChanging(System.Data.Linq.Binary value);
-    partial void OnVeraionChanged();
+    partial void OnVersionChanging(System.Data.Linq.Binary value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public CourseStudent()
@@ -661,7 +661,7 @@ namespace SystemGroup.Retail.StudentManagement.Common
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Veraion", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Veraion
+		public System.Data.Linq.Binary Version
 		{
 			get
 			{
@@ -671,11 +671,11 @@ namespace SystemGroup.Retail.StudentManagement.Common
 			{
 				if ((this._Veraion != value))
 				{
-					this.OnVeraionChanging(value);
+					this.OnVersionChanging(value);
 					this.SendPropertyChanging();
 					this._Veraion = value;
-					this.SendPropertyChanged("Veraion");
-					this.OnVeraionChanged();
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}

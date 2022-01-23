@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SystemGroup.Framework.Service;
-using SystemGroup.Retail.Structure.Web;
+
 using SystemGroup.Retail.StudentManagement.Common;
 using SystemGroup.Web;
 using SystemGroup.Web.ApplicationServices;
 using SystemGroup.Web.UI.Shell;
-using static SystemGroup.Retail.Structure.Web.WebComponentInitializerHelper;
+using static System.WebComponentInitializerHelper;
+
 
 namespace SystemGroup.Retail.StudentManagement.Web
 {
@@ -41,16 +42,13 @@ namespace SystemGroup.Retail.StudentManagement.Web
             return new List<ComponentLink>
             {
                 new ComponentLink("UniversityManagement", "Labels_UniversityManagement", null, null, 5, new ComponentLink[] {
-
-                    // ListLink<Course>(null, null, 1),
-
                     new ComponentLink("StudentManagement", "Labels_StudentManagement", null, null, 1, new ComponentLink[] {
                         new ComponentLink( "Lists", "Labels_Lists", null, null, 1, new ComponentLink[]
                         {
                             ListLink<Student>(null, null, 1),
+                            ListLink<Course>(null, null, 1),
                         }),
                         PageLink<StudentPages.Edit>(null, null, 1)
-
                     })
                 })
             };

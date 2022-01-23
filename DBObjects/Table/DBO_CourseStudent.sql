@@ -4,7 +4,7 @@ CREATE TABLE dbo.CourseStudent
     CourseStudentID bigint NOT NULL,
 	CourseRef bigint NOT NULL,
 	StudentRef bigint NOT NULL,
-	Veraion timestamp NOT NULL
+	Version timestamp NOT NULL
 ) on [Primary]
 
 

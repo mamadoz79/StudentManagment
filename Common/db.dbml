@@ -29,7 +29,7 @@
       <Column Name="CourseStudentID" Member="ID" Modifier="Override" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CourseRef" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="StudentRef" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Veraion" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Column Name="Version" Storage="_Veraion" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
       <Association Name="Course_CourseStudent" Member="Course" ThisKey="CourseRef" OtherKey="ID" Type="Course" IsForeignKey="true" />
     </Type>
   </Table>

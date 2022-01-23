@@ -12,7 +12,7 @@ namespace SystemGroup.Retail.StudentManagement.Common
     [ServiceInterface]
     public interface ICourseBusiness : IBusinessBase<Course>
     {
-        [EntityView("AllCourse", "Views_AllCourse", typeof(CourseProjection), "Name", IsDefaultView = true)]
+        [EntityView("AllCourse", "درسها", typeof(CourseProjection), "Name", IsDefaultView = true)]
         new IQueryable<Course> FetchAll();
     }
 }

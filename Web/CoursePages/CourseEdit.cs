@@ -12,7 +12,7 @@ using SystemGroup.Web.UI.Views.Pages;
 
 namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
 {
-    public class Edit : SgEditorView<Course>
+    public class CourseEdit : SgEditorView<Course>
     {
 
         private SgTextBox txtName;
@@ -28,26 +28,26 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
         {
             ViewPlaceHolder page = GetMainPlaceHolder();
 
-            var fs = page.Add<FieldSetView>().Width(800);
+            var fs = page.Add<FieldSetView>().Width(500);
           
-            DynamicFieldLayoutView header = fs.Add<DynamicFieldLayoutView>()                                
-                .Add<DynamicFieldLayoutView>()
-                .NumberOfColumns(2)
-                .Width(786)
-                .LabelCellWidth(80)
-                .InputCellWidth(280)
+            DynamicFieldLayoutView header = fs.Add<DynamicFieldLayoutView>()                                                
+                .NumberOfColumns(1)
+                .Width(200)
+                .LabelCellWidth(50)
+                .InputCellWidth(100)
                 .ValidationCellWidth(20);
 
             var rowName = header.AddRow();
             rowName.SetLabel("نام");
-            rowName.SetInput<TextBoxView>().ID("txtName").RealizedIn(() => txtName).Width(260);
-
+            rowName.SetInput<TextBoxView>().ID("txtName").RealizedIn(() => txtName).Width(90);
+            rowName.SetRequiredValidator();
 
             var rowTeacher = header.AddRow();
             rowTeacher.SetLabel("مدرس");
             rowTeacher.SetInput<SelectorView>().ID("sltTeacher")
-                .RealizedIn(() => sltTeachers)
+                .RealizedIn(() => sltTeachers).Width(90)
                 .EntityView<IParty>("AllPartiesOfTypePersonSimple");
+            rowTeacher.SetRequiredValidator();
 
         }
     }

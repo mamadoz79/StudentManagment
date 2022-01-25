@@ -26,6 +26,19 @@ namespace System
                 order);
         }
 
+        public static ComponentLink PageLink<TPage>(string name, string securityKey, string imageUrl, uint? order = null)
+            where TPage : SgPage
+        {           
+
+            return new ComponentLink(
+                name,
+                $"Links_{name}",
+                imageUrl,
+                string.IsNullOrWhiteSpace(securityKey) ? SecurityKey.Public : SecurityKey.Of(securityKey),
+                typeof(TPage),
+                order);
+        }
+
         public static ComponentLink ListLink<TEntity>(string securityKey, string imageUrl, uint? order = null, string viewName = null, string customListPageUrl = null)
             where TEntity : Entity
         {

@@ -5,6 +5,7 @@ using System.Web;
 using SystemGroup.Framework.Service;
 
 using SystemGroup.Retail.StudentManagement.Common;
+using SystemGroup.Retail.StudentManagement.Web.CoursePages;
 using SystemGroup.Web;
 using SystemGroup.Web.ApplicationServices;
 using SystemGroup.Web.UI.Shell;
@@ -15,6 +16,8 @@ namespace SystemGroup.Retail.StudentManagement.Web
 {
     public class WebComponentInitializer : WebComponentInitializerBase
     {
+
+        #region Student Entity Actions
 
         [AddNewEntityAction(typeof(Student))]
         public void AddNewStudent()
@@ -35,7 +38,30 @@ namespace SystemGroup.Retail.StudentManagement.Web
             ServiceFactory.Create<IStudentBusiness>().Delete(ids);
         }
 
+        #endregion
 
+        #region Course Entity Actions
+
+        [AddNewEntityAction(typeof(Course))]
+        public void AddNewCourse()
+        {
+            SgShell.Show<CourseEdit>();
+        }
+
+        [ViewDetailEntityAction(typeof(Course))]
+        public void ViewDetailsOfCourse(long[] ids)
+        {
+            foreach (var id in ids)
+                SgShell.Show<CourseEdit>($"id={id}");
+        }
+
+        [DeleteEntityAction(typeof(Course))]
+        public void DeleteCourse(long[] ids)
+        {
+            ServiceFactory.Create<ICourseBusiness>().Delete(ids);
+        }
+
+        #endregion
 
         public override List<ComponentLink> RegisterLinks()
         {
@@ -48,7 +74,8 @@ namespace SystemGroup.Retail.StudentManagement.Web
                             ListLink<Student>(null, null, 1),
                             ListLink<Course>(null, null, 1),
                         }),
-                        PageLink<StudentPages.Edit>(null, null, 1)
+                        PageLink<StudentPages.Edit>(null, null, 1),
+                        PageLink<CourseEdit>(null, null, 2)
                     })
                 })
             };

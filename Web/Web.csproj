@@ -99,6 +99,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoursePages\Edit.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="StudentPages\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

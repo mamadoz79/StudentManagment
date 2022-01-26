@@ -19,7 +19,8 @@ namespace SystemGroup.Retail.StudentManagement.Common
 
     partial class CourseStudent : Entity
     {
-        
+        public string StudentName { get; set; }
+
         #region Methods
 
         public override string GetEntityName()

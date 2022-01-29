@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SystemGroup.Framework.Business;
 using SystemGroup.Framework.Party;
 using SystemGroup.Retail.StudentManagement.Common;
 using SystemGroup.Web.UI;
@@ -30,9 +31,11 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
             get
             {
                 yield return "." + nameof(Course.CourseStudents);
-
             }
         }
+
+        public override DetailLoadOptions EntityLoadOptions => LoadOptions.With<Course>(i => i.CourseStudents);
+
         protected override void OnEntityLoaded(object sender, EntityLoadedEventArgs e)
         {
             base.OnEntityLoaded(sender, e);
@@ -66,7 +69,7 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
             rowTeacher.SetRequiredValidator();
 
             var details = page.Add<TabView>();
-            var studentsTab = details.AddTab("دانشجویان");
+            var studentsTab = details.AddTab().TabText("دانشجویان درس");
             var grid = studentsTab.Add<GridView<CourseStudent>>().ID("grdStudents")
                 .RealizedIn(() => grdStudents).DataSourceID(".CourseStudents").AllowScroll(true)
                 .AllowEdit(true).AllowDelete(true).AllowInsert(true).GridType(SgGridType.ClientSide).Width(789);
@@ -79,9 +82,7 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
                       .ID("sltStudents")
                       .EntityView<Student>("AllStudentNames")
                       .CbSelectedID(grid.CreateCB(s => s.StudentRef).TwoWay())
-                      .CbSelectedText(grid.CreateCB(s => s.StudentName));
-
-                    clm.EntityProperty(i => i.StudentName).IsSetBy(selector).FromEntityProperty("Student.LastName");
+                      .CbSelectedText(grid.CreateCB(s => s.StudentName));                    
                 });
 
         }

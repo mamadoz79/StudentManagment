@@ -78,6 +78,40 @@
 
 						</sg:SgFieldLayout>
 					</sg:SgFieldSet>
+
+					 <sg:SgTabStrip ID="tbsTab" runat="server" MultiPageID="mpgMultiPage">
+                        <Tabs>
+                            <sg:SgTab runat="server" Text="مشخصات" PageViewID="rpvSpec" />                            
+                        </Tabs>
+                    </sg:SgTabStrip>
+
+                    <sg:SgMultiPage ID="mpgMultiPage" runat="server">
+                        <telerik:RadPageView ID="rpvSpec" runat="server">
+                             
+							<sg:SgGrid runat="server" ID="grdSpecs" GridType="ClientSide" AllowScroll="true"
+                                    AllowEdit="true" AllowDelete="true" AllowInsert="true"
+	                                Width="780px" DataSourceID="dsSpecs" >
+								<Columns>
+									<sg:SgTextGridColumn HeaderText="نام مشخصه" PropertyName="Name" AllowEdit="true"></sg:SgTextGridColumn>									
+									<sg:SgTextGridColumn HeaderText="مقدار مشخصه" PropertyName="Value" AllowEdit="true"></sg:SgTextGridColumn>
+									
+									<sg:SgSelectorGridColumn PropertyName="OrganizaionUnitName" 
+                                           HeaderText="واحد سازمانی" >
+			                               <EditItemTemplate>
+			                                    <sg:SgSelector runat="server" ID="sltOrgUnits"
+													ComponentName="SystemGroup.Workflow.OrganizationModeling"
+													EntityName="OrganizationUnit"
+													ViewName="AllOrganizationUnits"
+													CbSelectedID="{binding OrganizationUnitRef}">
+			                                    </sg:SgSelector>
+											 </EditItemTemplate>
+										</sg:SgSelectorGridColumn>
+								</Columns>
+							</sg:SgGrid>
+
+						</telerik:RadPageView>
+					</sg:SgMultiPage>
+
 				</div>
 			</ContentTemplate>
 		</sg:SgUpdatePanel>

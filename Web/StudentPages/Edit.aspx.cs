@@ -14,6 +14,8 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
     {
         #region Properties
 
+        public SgEntityDataSource<StudentSpecifications> dsSpecs;
+
         public override SgFormView FormView
         {
             get { return null; }
@@ -46,7 +48,28 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
 
         protected override void OnInit(EventArgs e)
         {
-            base.OnInit(e);           
+            base.OnInit(e);
+
+            dsSpecs = new SgEntityDataSource<StudentSpecifications>
+            {
+                ID = "dsSpecs",
+                OperationalOnClientSide = true
+            };
+
+            Page.Form.Controls.Add(dsSpecs);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+           
+        }
+
+        protected override void OnEntityLoaded(object sender, EntityLoadedEventArgs e)
+        {
+            base.OnEntityLoaded(sender, e);
+
+           
         }
 
         protected override void OnEditorBinding(EditorBindingEventArgs<Student> e)
@@ -60,7 +83,17 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
             e.Context.BindValueTypeProperty(i => i.Gender).To(lkpGender);
         }
         
+        [Serializable]
+        public class StudentSpecifications
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
 
+            public string Value { get; set; }
+
+            public long OrganizaionUnitRef { get; set; }
+            public string OrganizaionUnitName { get; set; }
+        }
         #endregion
     }
 }

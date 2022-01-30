@@ -94,5 +94,41 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SystemGroup.Web.UI.Controls.SgLookup lkpGender;
+
+        /// <summary>
+        /// tbsTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SystemGroup.Web.UI.Controls.SgTabStrip tbsTab;
+
+        /// <summary>
+        /// mpgMultiPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SystemGroup.Web.UI.Controls.SgMultiPage mpgMultiPage;
+
+        /// <summary>
+        /// rpvSpec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpvSpec;
+
+        /// <summary>
+        /// grdSpecs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SystemGroup.Web.UI.Controls.SgGrid grdSpecs;
     }
 }

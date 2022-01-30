@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using SystemGroup.Framework.Business;
 using SystemGroup.Framework.Party;
+using SystemGroup.Framework.Service;
 using SystemGroup.Retail.StudentManagement.Common;
 using SystemGroup.Web.UI;
 using SystemGroup.Web.UI.Bindings;
@@ -39,8 +40,19 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
         protected override void OnEntityLoaded(object sender, EntityLoadedEventArgs e)
         {
             base.OnEntityLoaded(sender, e);
-            var n = CurrentEntity.CourseStudents.Count;
-            System.Diagnostics.Debug.WriteLine($"{CurrentEntity.Name} has {n} students");
+
+            var studentRefs = CurrentEntity.CourseStudents.Select(i => i.StudentRef).ToList();
+            
+            Dictionary<long, string> names = ServiceFactory.Create<IStudentBusiness>().FetchAll()
+                .Where(i => studentRefs.Contains(i.ID))
+                .Select(i => new { i.ID, Name = i.FirstName + "  " + i.LastName })
+                .ToDictionary(i => i.ID, v => v.Name);
+            
+            foreach (var courseStudent in CurrentEntity.CourseStudents)
+            {                
+                courseStudent.StudentName = names[courseStudent.StudentRef];
+            }
+
         }
 
         protected override void OnCreateViews()
@@ -65,14 +77,22 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
             rowTeacher.SetLabel("مدرس");
             rowTeacher.SetInput<SelectorView>().ID("sltTeacher")
                 .RealizedIn(() => sltTeachers).Width(90)
+                //.EntityView("AllPartiesOfTypePersonSimple").EntityName("IParty").ComponentName("SystemGroup.Framework.IParty")
                 .EntityView<IParty>("AllPartiesOfTypePersonSimple");
+
             rowTeacher.SetRequiredValidator();
 
             var details = page.Add<TabView>();
             var studentsTab = details.AddTab().TabText("دانشجویان درس");
-            var grid = studentsTab.Add<GridView<CourseStudent>>().ID("grdStudents")
-                .RealizedIn(() => grdStudents).DataSourceID(".CourseStudents").AllowScroll(true)
-                .AllowEdit(true).AllowDelete(true).AllowInsert(true).GridType(SgGridType.ClientSide).Width(789);
+            
+            var grid = studentsTab.Add<GridView<CourseStudent>>()
+                .ID("grdStudents")
+                .RealizedIn(() => grdStudents)
+                .DataSourceID(".CourseStudents")
+                .AllowScroll(true)
+                .AllowEdit(true).AllowDelete(true).AllowInsert(true)
+                .GridType(SgGridType.ClientSide)
+                .Width(789);
 
             grid.Columns.AddSelector().UniqueName("students").Width(120).HeaderText("دانشجو")
                 .Property(i => i.StudentName)

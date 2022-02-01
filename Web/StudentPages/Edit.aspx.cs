@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SystemGroup.Framework.Common;
 using SystemGroup.Retail.StudentManagement.Common;
 using SystemGroup.Web.UI;
 using SystemGroup.Web.UI.Controls;
@@ -83,6 +85,16 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
             e.Context.BindValueTypeProperty(i => i.Gender).To(lkpGender);
         }
         
+        protected void sltOrgUnits_ItemsRequested(object sender, Telerik.Web.UI.RadComboBoxItemsRequestedEventArgs e)
+        {
+            var slt = (SgSelector)sender;
+            var ignoredIDs = ((IEnumerable)e.Context["IgnoredIDs"]).
+                Cast<object>().
+                Select(o => Convert.ToInt64(o)).
+                ToList();
+            slt.FilterExpression = o => !ignoredIDs.Contains(((Entity)o).ID);
+        }
+
         [Serializable]
         public class StudentSpecifications
         {

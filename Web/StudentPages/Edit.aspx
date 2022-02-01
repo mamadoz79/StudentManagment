@@ -6,11 +6,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-	<title></title>
+	<title>دانشجو</title>
 </head>
 <body>
 	<form id="form1" runat="server">
-		<sg:SgScriptManager runat="server" ID="scriptManager"></sg:SgScriptManager>
+		<sg:SgScriptManager runat="server" ID="scriptManager">
+			<Scripts>
+				<asp:ScriptReference Path="StudentEdit.js" />
+			</Scripts>
+		</sg:SgScriptManager>
 		<sg:SgUpdatePanel runat="server" ID="updMain">
 			<ContentTemplate>
 				<div runat="server" id="dvMain">
@@ -102,7 +106,10 @@
 													ComponentName="SystemGroup.Workflow.OrganizationModeling"
 													EntityName="OrganizationUnit"
 													ViewName="AllOrganizationUnits"
-													CbSelectedID="{binding OrganizationUnitRef}">
+													CbSelectedID="{binding OrganizationUnitRef}"
+													OnClientSelectedIndexChanged="sltOrgUnits_selectedIndexChanged"
+                                                    OnClientItemsRequesting="sltOrgUnits_itemRequesting"
+                                                    OnItemsRequested="sltOrgUnits_ItemsRequested">
 			                                    </sg:SgSelector>
 											 </EditItemTemplate>
 										</sg:SgSelectorGridColumn>

@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\..\..\..\..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,8 +48,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq">
-      <HintPath>Bin\System.Data.Linq.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Bin\System.Data.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -96,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="StudentPages\Edit.aspx" />
+    <EmbeddedResource Include="StudentPages\StudentEdit.js" />
+    <EmbeddedResource Include="CoursePages\CourseEdit.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

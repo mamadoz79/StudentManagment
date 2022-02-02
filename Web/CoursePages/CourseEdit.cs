@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SystemGroup.Framework.Business;
+using SystemGroup.Framework.Common;
 using SystemGroup.Framework.Party;
 using SystemGroup.Framework.Service;
 using SystemGroup.Retail.StudentManagement.Common;
@@ -33,6 +35,12 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
             {
                 yield return "." + nameof(Course.CourseStudents);
             }
+        }
+
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            ScriptManager.Scripts.Add(new System.Web.UI.ScriptReference("CourseEdit.js"));
         }
 
         public override DetailLoadOptions EntityLoadOptions => LoadOptions.With<Course>(i => i.CourseStudents);
@@ -102,9 +110,18 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
                       .ID("sltStudents")
                       .EntityView<Student>("AllStudentNames")
                       .CbSelectedID(grid.CreateCB(s => s.StudentRef).TwoWay())
-                      .CbSelectedText(grid.CreateCB(s => s.StudentName));                    
-                });
+                      .CbSelectedText(grid.CreateCB(s => s.StudentName))
+                      .OnClientItemsRequesting("sltStudent_OnClientItemsRequesting")
+                      .OnItemsRequested((s, e) => {
+                          var slt = (SgSelector)s;
+                          var ignoredIDs = ((IEnumerable)e.Context["IgnoredIDs"]).
+                              Cast<object>().
+                              Select(o => Convert.ToInt64(o)).
+                              ToList();
+                          slt.FilterExpression = o => !ignoredIDs.Contains(((Entity)o).ID);
 
+                      });
+                });
         }
     }
 }

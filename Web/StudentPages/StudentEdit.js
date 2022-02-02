@@ -1,5 +1,4 @@
-﻿
-function sltOrgUnits_selectedIndexChanged(sender, args) {    
+﻿function sltOrgUnits_selectedIndexChanged(sender, args) {    
     let grid = $find("grdSpecs");
     var tempEntity = grid.get_tempEntity();
     if (tempEntity != null) {

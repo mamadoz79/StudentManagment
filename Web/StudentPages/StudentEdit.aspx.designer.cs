@@ -11,7 +11,7 @@ namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
 {
 
 
-    public partial class Edit
+    public partial class StudentEdit
     {
 
         /// <summary>

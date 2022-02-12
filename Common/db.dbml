@@ -33,4 +33,25 @@
       <Association Name="Course_CourseStudent" Member="Course" ThisKey="CourseRef" OtherKey="ID" Type="Course" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Term" Member="Terms">
+    <Type Name="Term">
+      <Column Name="TermID" Member="ID" Storage="_TermID" Modifier="Override" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifier" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Version" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Creator" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Term_TermCourse" Member="TermCourses" ThisKey="ID" OtherKey="TermRef" Type="TermCourse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[TermCourse]" Member="TermCourses">
+    <Type Name="TermCourse">
+      <Column Name="TermCourseID" Member="ID" Modifier="Override" Type="System.Int64" DbType="bigint NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="TermRef" Type="System.Int64" DbType="bigint NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Teacher" Type="System.String" DbType="nvarchar(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CourseRef" Type="System.Int64" DbType="Bigint not null" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Term_TermCourse" Member="Term" ThisKey="TermRef" OtherKey="ID" Type="Term" IsForeignKey="true" />
+    </Type>
+  </Table>
 </Database>

@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Edit.aspx.cs"
-	Inherits="SystemGroup.Retail.StudentManagement.Web.StudentPages.Edit"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentEdit.aspx.cs"
+	Inherits="SystemGroup.Retail.StudentManagement.Web.StudentPages.StudentEdit"
 	Title="Student_Student" %>
 
 <!DOCTYPE html>

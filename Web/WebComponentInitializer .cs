@@ -6,6 +6,7 @@ using SystemGroup.Framework.Service;
 
 using SystemGroup.Retail.StudentManagement.Common;
 using SystemGroup.Retail.StudentManagement.Web.CoursePages;
+using SystemGroup.Retail.StudentManagement.Web.TermPages;
 using SystemGroup.Web;
 using SystemGroup.Web.ApplicationServices;
 using SystemGroup.Web.UI.Shell;
@@ -22,14 +23,14 @@ namespace SystemGroup.Retail.StudentManagement.Web
         [AddNewEntityAction(typeof(Student))]
         public void AddNewStudent()
         {
-            SgShell.Show<StudentPages.Edit>();
+            SgShell.Show<StudentPages.StudentEdit>();
         }
 
         [ViewDetailEntityAction(typeof(Student))]
         public void ViewDetailsOfStudent(long[] ids)
         {
             foreach (var id in ids)
-                SgShell.Show<StudentPages.Edit>($"id={id}");
+                SgShell.Show<StudentPages.StudentEdit>($"id={id}");
         }
 
         [DeleteEntityAction(typeof(Student))]
@@ -63,6 +64,27 @@ namespace SystemGroup.Retail.StudentManagement.Web
 
         #endregion
 
+        [AddNewEntityAction(typeof(Term))]
+        public void AddNewTerm()
+        {
+            SgShell.Show<TermEdit>();
+        }
+
+        [ViewDetailEntityAction(typeof(Term))]
+        public void ViewDetailsOfTerm(long[] ids)
+        {
+            foreach (var id in ids)
+                SgShell.Show<TermEdit>($"id={id}");
+        }
+
+        [DeleteEntityAction(typeof(Term))]
+        public void DeleteTerm(long[] ids)
+        {
+            ServiceFactory.Create<ITermBusiness>().Delete(ids);
+        }
+
+
+
         public override List<ComponentLink> RegisterLinks()
         {
             return new List<ComponentLink>
@@ -72,10 +94,12 @@ namespace SystemGroup.Retail.StudentManagement.Web
                         new ComponentLink( "Lists", "Labels_Lists", null, null, 1, new ComponentLink[]
                         {
                             ListLink<Student>(null, null, 1),
-                            ListLink<Course>(null, null, 1),
+                            ListLink<Course>(null, null, 2),
+                            ListLink<Term>(null, null, 3)
                         }),
-                        PageLink<StudentPages.Edit>(null, null, 1),
-                        PageLink<CourseEdit>(null, null, 2)
+                        PageLink<StudentPages.StudentEdit>(null, null, 1),
+                        PageLink<CourseEdit>(null, null, 5),
+                        PageLink<TermPages.TermEdit>(null, null, 2)
                     })
                 })
             };

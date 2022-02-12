@@ -39,6 +39,12 @@ namespace SystemGroup.Retail.StudentManagement.Common
     partial void InsertCourseStudent(CourseStudent instance);
     partial void UpdateCourseStudent(CourseStudent instance);
     partial void DeleteCourseStudent(CourseStudent instance);
+    partial void InsertTerm(Term instance);
+    partial void UpdateTerm(Term instance);
+    partial void DeleteTerm(Term instance);
+    partial void InsertTermCourse(TermCourse instance);
+    partial void UpdateTermCourse(TermCourse instance);
+    partial void DeleteTermCourse(TermCourse instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -92,6 +98,22 @@ namespace SystemGroup.Retail.StudentManagement.Common
 			get
 			{
 				return this.GetTable<CourseStudent>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Term> Terms
+		{
+			get
+			{
+				return this.GetTable<Term>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TermCourse> TermCourses
+		{
+			get
+			{
+				return this.GetTable<TermCourse>();
 			}
 		}
 	}
@@ -710,6 +732,415 @@ namespace SystemGroup.Retail.StudentManagement.Common
 						this._CourseRef = default(long);
 					}
 					this.SendPropertyChanged("Course");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Term")]
+	public partial class Term : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _TermID;
+		
+		private System.DateTime _CreationDate;
+		
+		private long _LastModifier;
+		
+		private System.DateTime _LastModificationDate;
+		
+		private System.Data.Linq.Binary _Version;
+		
+		private System.DateTime _StartDate;
+		
+		private long _Creator;
+		
+		private EntitySet<TermCourse> _TermCourses;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnCreationDateChanging(System.DateTime value);
+    partial void OnCreationDateChanged();
+    partial void OnLastModifierChanging(long value);
+    partial void OnLastModifierChanged();
+    partial void OnLastModificationDateChanging(System.DateTime value);
+    partial void OnLastModificationDateChanged();
+    partial void OnVersionChanging(System.Data.Linq.Binary value);
+    partial void OnVersionChanged();
+    partial void OnStartDateChanging(System.DateTime value);
+    partial void OnStartDateChanged();
+    partial void OnCreatorChanging(long value);
+    partial void OnCreatorChanged();
+    #endregion
+		
+		public Term()
+		{
+			this._TermCourses = new EntitySet<TermCourse>(new Action<TermCourse>(this.attach_TermCourses), new Action<TermCourse>(this.detach_TermCourses));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TermID", Storage="_TermID", DbType="BigInt NOT NULL", IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public override long ID
+		{
+			get
+			{
+				return this._TermID;
+			}
+			set
+			{
+				if ((this._TermID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._TermID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime CreationDate
+		{
+			get
+			{
+				return this._CreationDate;
+			}
+			set
+			{
+				if ((this._CreationDate != value))
+				{
+					this.OnCreationDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreationDate = value;
+					this.SendPropertyChanged("CreationDate");
+					this.OnCreationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifier", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long LastModifier
+		{
+			get
+			{
+				return this._LastModifier;
+			}
+			set
+			{
+				if ((this._LastModifier != value))
+				{
+					this.OnLastModifierChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifier = value;
+					this.SendPropertyChanged("LastModifier");
+					this.OnLastModifierChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModificationDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime LastModificationDate
+		{
+			get
+			{
+				return this._LastModificationDate;
+			}
+			set
+			{
+				if ((this._LastModificationDate != value))
+				{
+					this.OnLastModificationDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastModificationDate = value;
+					this.SendPropertyChanged("LastModificationDate");
+					this.OnLastModificationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creator", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long Creator
+		{
+			get
+			{
+				return this._Creator;
+			}
+			set
+			{
+				if ((this._Creator != value))
+				{
+					this.OnCreatorChanging(value);
+					this.SendPropertyChanging();
+					this._Creator = value;
+					this.SendPropertyChanged("Creator");
+					this.OnCreatorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Term_TermCourse", Storage="_TermCourses", ThisKey="ID", OtherKey="TermRef")]
+		public EntitySet<TermCourse> TermCourses
+		{
+			get
+			{
+				return this._TermCourses;
+			}
+			set
+			{
+				this._TermCourses.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TermCourses(TermCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Term = this;
+		}
+		
+		private void detach_TermCourses(TermCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Term = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[TermCourse]")]
+	public partial class TermCourse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private long _TermRef;
+		
+		private string _Teacher;
+		
+		private long _CourseRef;
+		
+		private EntityRef<Term> _Term;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnTermRefChanging(long value);
+    partial void OnTermRefChanged();
+    partial void OnTeacherChanging(string value);
+    partial void OnTeacherChanged();
+    partial void OnCourseRefChanging(long value);
+    partial void OnCourseRefChanged();
+    #endregion
+		
+		public TermCourse()
+		{
+			this._Term = default(EntityRef<Term>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TermCourseID", Storage="_ID", DbType="bigint NOT NULL", IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public override long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TermRef", DbType="bigint NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long TermRef
+		{
+			get
+			{
+				return this._TermRef;
+			}
+			set
+			{
+				if ((this._TermRef != value))
+				{
+					if (this._Term.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTermRefChanging(value);
+					this.SendPropertyChanging();
+					this._TermRef = value;
+					this.SendPropertyChanged("TermRef");
+					this.OnTermRefChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Teacher", DbType="nvarchar(256) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Teacher
+		{
+			get
+			{
+				return this._Teacher;
+			}
+			set
+			{
+				if ((this._Teacher != value))
+				{
+					this.OnTeacherChanging(value);
+					this.SendPropertyChanging();
+					this._Teacher = value;
+					this.SendPropertyChanged("Teacher");
+					this.OnTeacherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CourseRef", DbType="Bigint not null", UpdateCheck=UpdateCheck.Never)]
+		public long CourseRef
+		{
+			get
+			{
+				return this._CourseRef;
+			}
+			set
+			{
+				if ((this._CourseRef != value))
+				{
+					this.OnCourseRefChanging(value);
+					this.SendPropertyChanging();
+					this._CourseRef = value;
+					this.SendPropertyChanged("CourseRef");
+					this.OnCourseRefChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Term_TermCourse", Storage="_Term", ThisKey="TermRef", OtherKey="ID", IsForeignKey=true)]
+		public Term Term
+		{
+			get
+			{
+				return this._Term.Entity;
+			}
+			set
+			{
+				Term previousValue = this._Term.Entity;
+				if (((previousValue != value) 
+							|| (this._Term.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Term.Entity = null;
+						previousValue.TermCourses.Remove(this);
+					}
+					this._Term.Entity = value;
+					if ((value != null))
+					{
+						value.TermCourses.Add(this);
+						this._TermRef = value.ID;
+					}
+					else
+					{
+						this._TermRef = default(long);
+					}
+					this.SendPropertyChanged("Term");
 				}
 			}
 		}

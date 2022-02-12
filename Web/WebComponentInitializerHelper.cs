@@ -28,14 +28,15 @@ namespace System
 
         public static ComponentLink PageLink<TPage>(string name, string securityKey, string imageUrl, uint? order = null)
             where TPage : SgPage
-        {           
-
+        {
+            Type t = typeof(TPage);
+            var key = t.Name;
             return new ComponentLink(
-                name,
+                key,
                 $"Links_{name}",
                 imageUrl,
                 string.IsNullOrWhiteSpace(securityKey) ? SecurityKey.Public : SecurityKey.Of(securityKey),
-                typeof(TPage),
+                t,
                 order);
         }
 

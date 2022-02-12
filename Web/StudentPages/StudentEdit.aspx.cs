@@ -12,7 +12,7 @@ using SystemGroup.Web.UI.Controls;
 
 namespace SystemGroup.Retail.StudentManagement.Web.StudentPages
 {
-    public partial class Edit : SgEditorPage<Student>
+    public partial class StudentEdit : SgEditorPage<Student>
     {
         #region Properties
 

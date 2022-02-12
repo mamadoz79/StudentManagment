@@ -19,7 +19,6 @@ namespace SystemGroup.Retail.StudentManagement.Common
     [Master(typeof(ICourseBusiness))]
     [SearchFields("Name")]
     [DataNature(DataNature.MasterData)]
-    [AssociatedWith(typeof(Party), nameof(TeacherRef), AssociationType.ManyToOne)]
     [AssociatedWith(typeof(IUserInfo), nameof(Creator), AssociationType.ManyToOne)]
     [AssociatedWith(typeof(IUserInfo), nameof(LastModifier), AssociationType.ManyToOne)]
     partial class Course : Entity, ITrackedEntity

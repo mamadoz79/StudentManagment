@@ -77,6 +77,14 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SystemGroup.General.IPartyManagement.Common, Version=13.0.905.45586, Culture=neutral, PublicKeyToken=null">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SystemGroup.General.PartyManagement.Common, Version=13.0.905.46092, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\SystemGroup.General.PartyManagement.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="SystemGroup.Web, Version=777.777.16.55627, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\SystemGroup.Web.dll</HintPath>
@@ -98,6 +106,7 @@
     <EmbeddedResource Include="StudentPages\StudentEdit.aspx" />
     <EmbeddedResource Include="StudentPages\StudentEdit.js" />
     <EmbeddedResource Include="CoursePages\CourseEdit.js" />
+    <EmbeddedResource Include="TermPages\TermEdit.js" />
     <Content Include="Web.config" />
     <EmbeddedResource Include="TermPages\TermEdit.aspx" />
   </ItemGroup>

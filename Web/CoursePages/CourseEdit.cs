@@ -21,12 +21,10 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
     {
 
         private SgTextBox txtName;
-        private SgSelector sltTeachers;
         private SgGrid grdStudents;
         protected override void OnCreateBindings(SgDataSourceEditorBindingContext<Course> context)
         {
             context.BindProperty(c => c.Name).To(txtName);
-            context.BindValueTypeProperty(c => c.TeacherRef).To(sltTeachers);
         }
         // protected override IEnumerable<string> ClientSideDetailDataSources => new string[] { ".CourseStudents" };
         protected override IEnumerable<string> ClientSideDetailDataSources
@@ -80,15 +78,6 @@ namespace SystemGroup.Retail.StudentManagement.Web.CoursePages
             rowName.SetLabel("نام");
             rowName.SetInput<TextBoxView>().ID("txtName").RealizedIn(() => txtName).Width(90);
             rowName.SetRequiredValidator();
-
-            var rowTeacher = header.AddRow();
-            rowTeacher.SetLabel("مدرس");
-            rowTeacher.SetInput<SelectorView>().ID("sltTeacher")
-                .RealizedIn(() => sltTeachers).Width(90)
-                //.EntityView("AllPartiesOfTypePersonSimple").EntityName("IParty").ComponentName("SystemGroup.Framework.IParty")
-                .EntityView<IParty>("AllPartiesOfTypePersonSimple");
-
-            rowTeacher.SetRequiredValidator();
 
             var details = page.Add<TabView>();
             var studentsTab = details.AddTab().TabText("دانشجویان درس");

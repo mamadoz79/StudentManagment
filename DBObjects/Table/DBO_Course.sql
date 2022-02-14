@@ -2,7 +2,6 @@
 CREATE TABLE dbo.Course(
 	CourseID bigint not null,
 	[Name] nvarchar(256) not null,
-	TeacherRef bigint not null,
 	[Creator] [bigint] NOT NULL,
 	[CreationDate] [datetime] NOT NULL,
 	[LastModifier] [bigint] NOT NULL,
@@ -16,12 +15,6 @@ ALTER TABLE [DBO].[Course] ADD  CONSTRAINT [PK_DBO_CourseID] PRIMARY KEY CLUSTER
 	[CourseID] ASC
 ) ON [PRIMARY]
 GO
-If not Exists (select 1 from sys.objects where name = 'FK_DBO_Course_TeacherRef')
-ALTER TABLE [DBO].[Course]  
-ADD CONSTRAINT [FK_DBO_Course_TeacherRef] 
-  FOREIGN KEY([TeacherRef])
-  REFERENCES [GNR3].[Party] ([PartyID])
-Go 
 If not Exists (select 1 from sys.objects where name = 'FK_DBO_Course_Creator')
 ALTER TABLE [DBO].[Course]  ADD  CONSTRAINT [FK_DBO_Course_Creator] FOREIGN KEY([Creator])
 REFERENCES [SYS3].[User] ([UserID])
@@ -31,4 +24,8 @@ If not Exists (select 1 from sys.objects where name = 'FK_DBO_Course_LastModifie
 ALTER TABLE [DBO].[Course]  ADD  CONSTRAINT [FK_DBO_Course_LastModifier] FOREIGN KEY([LastModifier])
 REFERENCES [SYS3].[User] ([UserID])
 
+GO
+
+IF EXISTS (select 1 from sys.objects where name = 'FK_DBO_Course_TeacherRef')
+	ALTER TABLE [dbo].[Course] DROP CONSTRAINT [FK_DBO_Course_TeacherRef] 
 GO

@@ -15,8 +15,12 @@ namespace SystemGroup.Retail.StudentManagement.Common
 {
     [Serializable]
     [DetailOf(typeof(Term), "TermRef")]
+    [AssociatedWith(typeof(Course), nameof(CourseRef), AssociationType.ManyToOne)]
     partial class TermCourse : Entity
     {
+        public string CourseTitle { get; set; }
+        public string TeacherTitle { get; set; }
+
         #region Methods
 
         public override string GetEntityName()

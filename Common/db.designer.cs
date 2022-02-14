@@ -334,8 +334,6 @@ namespace SystemGroup.Retail.StudentManagement.Common
 		
 		private string _Name;
 		
-		private long _TeacherRef;
-		
 		private long _Creator;
 		
 		private System.DateTime _CreationDate;
@@ -356,8 +354,6 @@ namespace SystemGroup.Retail.StudentManagement.Common
     partial void OnIDChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnTeacherRefChanging(long value);
-    partial void OnTeacherRefChanged();
     partial void OnCreatorChanging(long value);
     partial void OnCreatorChanged();
     partial void OnCreationDateChanging(System.DateTime value);
@@ -412,26 +408,6 @@ namespace SystemGroup.Retail.StudentManagement.Common
 					this._Name = value;
 					this.SendPropertyChanged("Name");
 					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherRef", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
-		public long TeacherRef
-		{
-			get
-			{
-				return this._TeacherRef;
-			}
-			set
-			{
-				if ((this._TeacherRef != value))
-				{
-					this.OnTeacherRefChanging(value);
-					this.SendPropertyChanging();
-					this._TeacherRef = value;
-					this.SendPropertyChanged("TeacherRef");
-					this.OnTeacherRefChanged();
 				}
 			}
 		}
@@ -1001,7 +977,7 @@ namespace SystemGroup.Retail.StudentManagement.Common
 		
 		private long _TermRef;
 		
-		private string _Teacher;
+		private long _TeacherRef;
 		
 		private long _CourseRef;
 		
@@ -1015,8 +991,8 @@ namespace SystemGroup.Retail.StudentManagement.Common
     partial void OnIDChanged();
     partial void OnTermRefChanging(long value);
     partial void OnTermRefChanged();
-    partial void OnTeacherChanging(string value);
-    partial void OnTeacherChanged();
+    partial void OnTeacherRefChanging(long value);
+    partial void OnTeacherRefChanged();
     partial void OnCourseRefChanging(long value);
     partial void OnCourseRefChanged();
     #endregion
@@ -1071,22 +1047,22 @@ namespace SystemGroup.Retail.StudentManagement.Common
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Teacher", DbType="nvarchar(256) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Teacher
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherRef", DbType="bigint NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long TeacherRef
 		{
 			get
 			{
-				return this._Teacher;
+				return this._TeacherRef;
 			}
 			set
 			{
-				if ((this._Teacher != value))
+				if ((this._TeacherRef != value))
 				{
-					this.OnTeacherChanging(value);
+					this.OnTeacherRefChanging(value);
 					this.SendPropertyChanging();
-					this._Teacher = value;
-					this.SendPropertyChanged("Teacher");
-					this.OnTeacherChanged();
+					this._TeacherRef = value;
+					this.SendPropertyChanged("TeacherRef");
+					this.OnTeacherRefChanged();
 				}
 			}
 		}

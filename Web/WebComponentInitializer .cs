@@ -99,7 +99,7 @@ namespace SystemGroup.Retail.StudentManagement.Web
                         }),
                         PageLink<StudentPages.StudentEdit>(null, null, 1),
                         PageLink<CourseEdit>(null, null, 5),
-                        PageLink<TermPages.TermEdit>(null, null, 2)
+                        PageLink<TermEdit>(null, null, 2)
                     })
                 })
             };

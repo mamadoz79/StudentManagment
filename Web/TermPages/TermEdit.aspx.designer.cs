@@ -58,5 +58,14 @@ namespace SystemGroup.Retail.StudentManagement.Web.TermPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SystemGroup.Web.UI.Controls.SgDatePicker dpStartDate;
+
+        /// <summary>
+        /// grdTermCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SystemGroup.Web.UI.Controls.SgGrid grdTermCourse;
     }
 }

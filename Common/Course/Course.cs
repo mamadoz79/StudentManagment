@@ -31,7 +31,6 @@ namespace SystemGroup.Retail.StudentManagement.Common
             base.GetColumns(columns);
 
             columns.Add(new TextColumnInfo(nameof(Name), "عنوان درس"));
-            columns.Add(new ReferenceColumnInfo(nameof(TeacherRef), "مدرس"));
             columns.Add(new ReferenceColumnInfo("Creator", "ایجاد کننده"));
             columns.Add(new DateTimeColumnInfo("CreationDate", "تاریخ ایجاد"));
             columns.Add(new ReferenceColumnInfo("LastModifier", "اخرین ویرایشگر"));
